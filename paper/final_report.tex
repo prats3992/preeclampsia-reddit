@@ -305,7 +305,7 @@ Our temporal analysis reveals that COVID-19 served as the primary catalyst for e
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.9\textwidth]{analysis_output/covid_comparison/post_volume_comparison.png}
+    \includegraphics[width=0.9\textwidth]{../results/covid_comparison/post_volume_comparison.png}
     \caption{Post Volume Evolution Across Temporal Periods. \textbf{Top Panel:} Aggregate Pre vs. Post-COVID comparison revealing 35.8x increase. \textbf{Bottom Panel:} Monthly time series demonstrating the "hockey stick" growth pattern initiated by COVID-19 in March 2020, with acceleration continuing through 2023--2025 as digital health adoption normalized.}
     \label{fig:volume}
 \end{figure}
@@ -334,7 +334,7 @@ As the community transitioned from "early adopters" (2012--2022) to "mass market
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.9\textwidth]{analysis_output/temporal/positive_percentage_by_year.png}
+    \includegraphics[width=0.9\textwidth]{../results/temporal/positive_percentage_by_year.png}
     \caption{Percentage of Positive-Sentiment Posts by Year. Peak positivity occurred in 2013 (71.4\%) and 2023 (57.8\%), with subsequent decline to 44.7\% in 2025. The U-shaped pattern suggests early adopter communities exhibit higher positivity, which degrades as mainstream adoption brings influx of acute distress signals.}
     \label{fig:positivity}
 \end{figure}
@@ -348,7 +348,7 @@ To identify discrete sentiment "shocks," we computed year-over-year changes in a
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.9\textwidth]{analysis_output/temporal/yoy_sentiment_change.png}
+    \includegraphics[width=0.9\textwidth]{../results/temporal/yoy_sentiment_change.png}
     \caption{Year-over-Year Absolute Change in Average Sentiment Score. Positive bars (green) indicate years where sentiment improved relative to the previous year; negative bars (pink) indicate deterioration. The 2013 spike (+1.27 change) represents the "founding moment" as early adopters established a supportive culture. The 2023 resurgence (+0.35) marks the "re-founding" as the community scaled.}
     \label{fig:yoy}
 \end{figure}
@@ -367,7 +367,7 @@ One of the most striking structural changes in the ecosystem is the dramatic cen
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=1.0\textwidth]{analysis_output/covid_comparison/subreddit_distribution_comparison.png}
+    \includegraphics[width=1.0\textwidth]{../results/covid_comparison/subreddit_distribution_comparison.png}
     \caption{Subreddit Distribution: Pre-COVID (Pink) vs. Post-COVID (Blue) Eras. In the pre-pandemic landscape, discourse was fragmented across general pregnancy forums (\texttt{r/BabyBumps}, \texttt{r/pregnant}) and NICU support groups. The modern ecosystem is dominated by \texttt{r/preeclampsia} (54.7\% of total volume), representing a 28-fold increase in the subreddit's market share.}
     \label{fig:migration}
 \end{figure}
@@ -387,7 +387,7 @@ To understand \textit{why} users migrate from general to specialist forums, we a
 \clearpage
 \begin{figure}[p]
     \centering
-    \includegraphics[width=0.95\textwidth, height=0.85\textheight, keepaspectratio]{analysis_output/overall/subreddit_tfidf_comparison.png}
+    \includegraphics[width=0.95\textwidth, height=0.85\textheight, keepaspectratio]{../results/overall/subreddit_tfidf_comparison.png}
     \caption{Top 20 TF-IDF Terms by Subreddit. \texttt{r/preeclampsia} (top panel) exhibits clinical vocabulary dominance: "bp" (blood pressure), "protein", "readings", "monitoring", "severe". In contrast, \texttt{r/BabyBumps} (middle panel) centers on emotional processing: "baby", "just", "feel", "like", "worried". This lexical specialization demonstrates functional differentiation: specialist forums serve as quantitative triage hubs, while generalist forums provide emotional validation.}
     \label{fig:tfidf}
 \end{figure}
@@ -420,7 +420,7 @@ A core function of online health communities is emotional buffering: transformin
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=1.0\textwidth]{analysis_output/overall/overall_sentiment_distribution.png}
+    \includegraphics[width=1.0\textwidth]{../results/overall/overall_sentiment_distribution.png}
     \caption{Sentiment Distribution Comparison: Posts vs. Comments. \textbf{Top Row:} Categorical sentiment distribution (pie charts). Posts exhibit near-parity between negative (48.2\%) and positive (47.8\%) sentiment, creating a polarized, "distress/relief" bimodal distribution. Comments shift dramatically positive (66.2\%), demonstrating systematic community buffering. \textbf{Bottom Row:} VADER compound score distributions (histograms). Posts show the characteristic "horns" effect with peaks at extremes (-1.0 and +1.0), while comments exhibit unimodal positive skew.}
     \label{fig:sentiment_pie}
 \end{figure}
@@ -466,7 +466,7 @@ To assess whether the pandemic altered community support dynamics, we compared P
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.9\textwidth]{analysis_output/covid_comparison/sentiment_distribution_comparison.png}
+    \includegraphics[width=0.9\textwidth]{../results/covid_comparison/sentiment_distribution_comparison.png}
     \caption{Pre-COVID vs. Post-COVID Sentiment Distribution (Absolute Counts). The Post-COVID era shows a massive volume increase (963 posts vs. 32 Pre-COVID) but maintains similar sentiment proportions. Negative posts dominate in both eras (Pre: 48.4\%, Post: 47.9\%), suggesting that community function (distress relief) remained stable despite exponential scaling.}
     \label{fig:covid_sentiment}
 \end{figure}
@@ -480,7 +480,7 @@ Beyond our primary research questions, Latent Dirichlet Allocation (LDA) reveale
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=1.0\textwidth]{analysis_output/overall/topic_modeling.png}
+    \includegraphics[width=1.0\textwidth]{../results/overall/topic_modeling.png}
     \caption{LDA Topic Modeling Results (k=5 topics). Each bar represents a topic's average weight across the corpus, with top 10 characteristic terms displayed. Topic 3 ("bp", "pressure", "readings") dominates, indicating that the community's primary function has shifted from narrative sharing to quantitative peer-triage.}
     \label{fig:topics}
 \end{figure}
@@ -530,7 +530,7 @@ To quantify the "medicalization" of community discourse, we tracked the frequenc
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.9\textwidth]{analysis_output/overall/medical_terms_analysis.png}
+    \includegraphics[width=0.9\textwidth]{../results/overall/medical_terms_analysis.png}
     \caption{\textbf{Left Panel:} Top 30 Medical Terms by Frequency. "Blood pressure" (abbreviated as "bp") appears in 47\% of posts, while formal diagnostic terms ("preeclampsia", "HELLP") appear in 38\% and 12\% respectively. \textbf{Right Panel:} Word cloud visualization scaled by term frequency, demonstrating the semantic core of community discourse centered on hypertension monitoring.}
     \label{fig:medical_terms}
 \end{figure}
@@ -580,7 +580,7 @@ To understand how community culture varies across the Reddit ecosystem, we compu
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.9\textwidth]{analysis_output/overall/sentiment_by_subreddit.png}
+    \includegraphics[width=0.9\textwidth]{../results/overall/sentiment_by_subreddit.png}
     \caption{\textbf{Top Panel:} Average sentiment score by subreddit (top 20 by volume). Blue bars indicate positive-leaning communities; pink bars indicate negative-leaning. \textbf{Bottom Panel:} Sentiment component breakdown (positive, negative, compound scores) for top 10 subreddits by volume, revealing distinct emotional profiles.}
     \label{fig:subreddit_sentiment}
 \end{figure}

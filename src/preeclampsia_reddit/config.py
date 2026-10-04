@@ -1,7 +1,10 @@
+"""Study parameters: subreddit weights, LLM-suggested keyword lists and collection limits.
+
+Subreddit and keyword lists were proposed independently by three LLMs (Claude Sonnet 4.5,
+Gemini 2.5 Pro, GPT-5); their raw answers are kept in ``docs/llm_suggestions/``.
 """
-Configuration for Reddit data collection pipeline
-Defines subreddit weights and keyword categorization
-"""
+
+import pandas as pd
 
 # Subreddit weights based on relevance to pre-eclampsia
 # Higher weight = more focused on the topic
@@ -10,7 +13,6 @@ SUBREDDIT_WEIGHTS = {
     'preeclampsia': {'weight': 1.0, 'llm': ['claude', 'gemini', 'gpt5'], 'focus': 'dedicated'},
     'highriskpregnancy': {'weight': 1.0, 'llm': ['gemini'], 'focus': 'dedicated'},
     'NICUParents': {'weight': 0.9, 'llm': ['claude', 'gemini'], 'focus': 'high'},
-    'NICUparents': {'weight': 0.9, 'llm': ['gemini'], 'focus': 'high'},
     
     # Medium-high relevance - pregnancy with complications focus (0.7-0.8)
     'PregnancyAfter35': {'weight': 0.8, 'llm': ['claude'], 'focus': 'high'},
@@ -123,38 +125,21 @@ KEYWORD_WEIGHTS = {
     'context': 0.5          # Contextual terms
 }
 
-# Date range for data collection
-# r/preeclampsia was created on June 29, 2013
-# COVID-19 pandemic started around March 2020
+# r/preeclampsia was created on 2013-06-29; posts on/after COVID_START are "Post-COVID".
+COVID_START = pd.Timestamp('2020-03-01')
+
 DATA_COLLECTION_CONFIG = {
-    'start_date': '2013-06-29',  # r/preeclampsia creation date
-    'covid_start_date': '2020-03-01',  # COVID-19 pandemic start (for analysis)
-    'end_date': '2025-11-22',    # Current date
-    'base_posts_per_subreddit': 500*20,  # Base number, multiplied by weight
+    'base_posts_per_subreddit': 10_000,  # scaled by subreddit weight
     'max_comments_per_post': 50,
-    'min_score_threshold': 1,    # Minimum post score
-    'min_comment_length': 50,    # Minimum comment length in characters
+    'min_comment_length': 50,            # characters
 }
 
-# Calculate actual post limits based on weights
-# Weight 1.0 = collect base_posts * 1.0
-# Weight 0.5 = collect base_posts * 0.5, etc.
+# Seconds to pause between subreddits to stay well inside Reddit's rate limit
+RATE_LIMIT_SECONDS = 2
+
+
 def get_post_limit_for_subreddit(subreddit):
-    """Calculate how many posts to collect based on subreddit weight"""
-    base_limit = DATA_COLLECTION_CONFIG['base_posts_per_subreddit']
+    """Posts to request for a subreddit: base limit x weight, clamped to [50, 10 000]."""
     weight = SUBREDDIT_WEIGHTS.get(subreddit, {}).get('weight', 0.3)
-    
-    # Calculate limit: higher weight = more posts
-    # 1.0 weight = 500 posts, 0.5 weight = 250 posts, 0.3 weight = 150 posts
-    post_limit = int(base_limit * weight)
-    
-    # Minimum 50 posts, maximum 1000 posts
-    return max(50, min(post_limit, 10000))
-
-# Firebase collection structure
-FIREBASE_COLLECTIONS = {
-    'posts': 'reddit_posts',
-    'comments': 'reddit_comments',
-    'metadata': 'collection_metadata',
-    'analysis': 'llm_comparison_analysis'
-}
+    post_limit = int(DATA_COLLECTION_CONFIG['base_posts_per_subreddit'] * weight)
+    return max(50, min(post_limit, 10_000))

@@ -1,19 +1,36 @@
-# For python
-*.pyc
+# Python
 __pycache__/
-# For virtual environments
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+build/
+dist/
+
+# Virtual environments
+.venv/
 venv/
-.env/
-# For IDEs
+
+# Secrets — never commit credentials
+.env
+*-firebase-adminsdk-*.json
+firebase-credentials*.json
+service-account*.json
+
+# Collected Reddit data stays local (see README: Data & ethics)
+data/
+
+# Files that are not ours to redistribute
+docs/private/
+
+# LaTeX build artefacts
+paper/*.aux
+paper/*.log
+paper/*.out
+paper/*.toc
+paper/*.synctex.gz
+
+# Editors / OS
 .vscode/
 .idea/
-# For Firebase service account keys
-*.json
-# Ignore environment variable files
-.env
-*.csv
-cleaning_summary*txt
-*zip
-*.out
-*.aux
-*.log
+.DS_Store
